@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.master');
 });
 
 Route::get('/get/product', function () {
@@ -31,5 +31,9 @@ Route::get('/get/product/{id}', function ($id) {
 
 Route::get('/get/category/{id}', function ($id) {
     return App\Models\Category::where("id", "LIKE", $id)->get();
+});
+
+Route::post('/add/product', function () {
+    
 });
 
