@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('layouts.master');
+    return view('welcome');
 });
+
+Route::get('/product', [App\Http\Controllers\ProductController::class , 'index' ]);
+
 
 Route::get('/get/product', function () {
     return App\Models\Product::all();
@@ -36,4 +40,3 @@ Route::get('/get/category/{id}', function ($id) {
 Route::post('/add/product', function () {
     
 });
-
