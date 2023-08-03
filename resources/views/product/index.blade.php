@@ -59,14 +59,13 @@
             </div>
             
         </div>
-        <ul class="pagination">
+        {{-- <ul class="pagination">
             <li><a href="#">&laquo;</a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
+            @for (count($products) as $i)
+            @for ($i = 1; $i <= count($products); $i++)
+                <li><a href="#">{{$i}}</a></li>
+            @endfor
             <li><a href="#">&raquo;</a></li>
-          </ul>
+        </ul> --}}
     </div>
 @endsection
