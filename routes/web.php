@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,34 +18,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// ******************* PRODUCT ROUNTING *******************
-Route::get('/get/product', function () {
-    return App\Models\Product::all();
-});
-
-Route::get('/get/product/{id}', function ($id) {
-    return App\Models\Product::where("id", "LIKE", $id)->get();
-});
-
-Route::post('/add/product', function () {
-    
-});
-
-Route::get('/product', [App\Http\Controllers\ProductController::class , 'index' ]);
+Route::get('/product', [App\Http\Controllers\ProductController::class, 'index']);
 Route::post('/product/search', [App\Http\Controllers\ProductController::class, 'search']);
 Route::get('/product/search', [App\Http\Controllers\ProductController::class, 'search']);
+Route::post('/product/search', [App\Http\Controllers\ProductController::class, 'search']);
+Route::get('/product/edit/{id?}',[App\Http\Controllers\ProductController::class, 'edit']);
+Route::post('/product/update',[App\Http\Controllers\ProductController::class, 'update']);
 
 
+Route::get('/category', [App\Http\Controllers\CategoryController::class, 'index']);
+Route::post('/category/search', [App\Http\Controllers\CategoryController::class, 'search']);
+Route::get('/category/search', [App\Http\Controllers\CategoryController::class, 'search']);
+Route::post('/category/search', [App\Http\Controllers\CategoryController::class, 'search']);
+Route::get('/category/edit/{id?}',[App\Http\Controllers\CategoryController::class, 'edit']);
+Route::post('/category/update',[App\Http\Controllers\CategoryController::class, 'update']);
 
-// ******************* CATEGORY ROUNTING *******************
-Route::get('/get/category', function () {
-    return App\Models\Category::all();
-});
 
-Route::get('/get/category/{id}', function ($id) {
-    return App\Models\Category::where("id", "LIKE", $id)->get();
-});
-
-Route::post('/add/category', function () {
-    
-});
