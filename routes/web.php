@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,22 +16,21 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.master');
 });
 
 Route::get('/product', [App\Http\Controllers\ProductController::class, 'index']);
-Route::post('/product/search', [App\Http\Controllers\ProductController::class, 'search']);
 Route::get('/product/search', [App\Http\Controllers\ProductController::class, 'search']);
 Route::post('/product/search', [App\Http\Controllers\ProductController::class, 'search']);
-Route::get('/product/edit/{id?}',[App\Http\Controllers\ProductController::class, 'edit']);
-Route::post('/product/update',[App\Http\Controllers\ProductController::class, 'update']);
+Route::get('/product/edit/{id?}' , [App\Http\Controllers\ProductController::class, 'edit']);
+Route::post('/product/update' , [App\Http\Controllers\ProductController::class, 'update']);
+Route::post('/product/edit' , [App\Http\Controllers\ProductController::class, 'insert']);
+Route::get('/product/remove/{id?}' , [App\Http\Controllers\ProductController::class, 'remove']);
 
 
 Route::get('/category', [App\Http\Controllers\CategoryController::class, 'index']);
 Route::post('/category/search', [App\Http\Controllers\CategoryController::class, 'search']);
-Route::get('/category/search', [App\Http\Controllers\CategoryController::class, 'search']);
-Route::post('/category/search', [App\Http\Controllers\CategoryController::class, 'search']);
-Route::get('/category/edit/{id?}',[App\Http\Controllers\CategoryController::class, 'edit']);
-Route::post('/category/update',[App\Http\Controllers\CategoryController::class, 'update']);
-
-
+Route::get('/category/edit/{id?}' , [App\Http\Controllers\CategoryController::class, 'edit']);
+Route::post('/category/update' , [App\Http\Controllers\CategoryController::class, 'update']);
+Route::post('/category/edit' , [App\Http\Controllers\CategoryController::class, 'insert']);
+Route::get('/category/remove/{id?}' , [App\Http\Controllers\CategoryController::class, 'remove']);

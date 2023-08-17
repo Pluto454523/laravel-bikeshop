@@ -1,58 +1,63 @@
 @extends('layouts.master')
-@section("title") Bikeshop | รายการประเภทสินค้า @stop
+@section('title') BikeShop | ประเภทสินค้า @stop
 @section('content')
-    <h1>แก้ไขข้อมูลประเภทสินค้า</h1>
-    <ul class="breadcrumb">
-        <li><a href="{{ URL::to('category') }}">รายการประเภทสินค้า</a></li>
-    </ul>
+    <h1>ประเภทสินค้า</h1>
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="panel-title">
-                <strong>รายการ</strong>
+                <strong>รายการประเภท</strong>
             </div>
         </div>
         <div class="panel-body">
-            {{-- search form --}}
-            <form action="{{ URL::to('category/search') }}" method="POST" class="form-inline">
+            <a href="{{ URL::to('category/edit') }}" class="btn btn-success pull-right">เพิ่มสินค้า</a>
+            <form action="{{ URL::to('category/search') }}" method="post" class="form-inline">
                 {{ csrf_field() }}
                 <input type="text" name="q" class="form-control" placeholder="พิมพ์รหัสหรือชื่อเพื่อค้นหา">
                 <button type="submit" class="btn btn-primary">ค้นหา</button>
             </form>
+            <br>
+            <table class="table table-bordered bs-table">
+                <thead>
+                    <tr>
+                        <th>รหัสประเภท</th>
+                        <th>ชื่อประเภท</th>
+                        <th>การทำงาน</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($categories as $c)
+                        <tr>
+                            <td> {{ $c->id }} </td>
+                            <td> {{ $c->name }} </td>
+                            <td class="bs-center">
+                                <a href="{{ URL::to('category/edit/' . $c->id) }}" class="btn btn-info"> <i
+                                        class="fa fa-edit"></i> แก้ไข</a>
+                                <a href="#" class="btn btn-danger btn-delete" id-delete="{{ $c->id }}">
+                                    <i class="fa fa-trash"></i> ลบ</a>
+                            </td>
+
+                        </tr>
+                    @endforeach
+                </tbody>
+
+            </table>
+            <div class="panel-footer ">
+                <span>แสดงข้อมูลจํานวน {{ count($categories) }} รายการ</span>
+            </div>
+            <br>
+            {{ $categories->links() }}
+            <br>
         </div>
-
     </div>
 
-    <table class="table table-bordered bs-table">
-        <thead>
-            <tr>
-                <th>ชื่อประเภทสินค้า</th>
-                <th>การทำงาน</th>
-                
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($categories as $p)
-                <tr>
-                    <td>{{ $p->name }}</td>
-
-                    <td class="bs-center">
-                        <a href="{{ URL::to('category/edit/'.$p->id) }}" class="btn btn-info"><i class="fa fa-edit"> แก้ไข</i></a>
-                        <a href="#" class="btn btn-danger"><i class="fa fa-trash"> ลบ</i></a>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-        <tfoot>
-           
-        </tfoot>
-    </table>
-    <div class="panel-footer">
-        <span>แสดงข้อมูลจํานวน {{ count($categories) }} รายการ</span>
-    </div>
-    {{ $categories->links() }}
-</div>
-
-
-
-
+    <script>
+        $(document).ready(function() {
+            $('.btn-delete').click(function() {
+                var id = $(this).attr('id-delete');
+                if (confirm('คุณต้องการลบข้อมูลใช่หรือไม่')) {
+                    window.location.href = '/category/remove/' + id;
+                }
+            });
+        });
+    </script>
 @endsection
