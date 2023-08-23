@@ -30,8 +30,9 @@
                 </thead>
                 <tbody>
                     @foreach ($products as $p)
+                    <tr>
                         {{-- ตัวแปร products ที่ถูกส่งมาจาก Controller --}}
-                        <td><img src="{{ $p->image_url }}" width="50px"></td>
+                        <td><img src="../{{ $p->image_url }}" width="50px"></td>
                         <td>{{ $p->code }}</td>
                         <td>{{ $p->name }}</td>
                         <td>{{ $p->category->name }}</td>
@@ -44,7 +45,7 @@
                                 <i class="fa fa-trash"></i> ลบ</a>
                         </td>
 
-                        </tr>
+                    </tr>
                     @endforeach
                 </tbody>
                 <tfoot>

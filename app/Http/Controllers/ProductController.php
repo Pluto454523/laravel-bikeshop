@@ -105,10 +105,11 @@ class ProductController extends Controller
     public function insert(Request $request){
         //inset data
         $rules = array(
-            'code' => 'required', 'name' => 'required',
-            'category_id' => 'required|numeric', 
-            'price' => 'numeric',
-            'stock_qty' => 'numeric',
+            'code'          => 'required', 
+            'name'          => 'required',
+            'category_id'   => 'required|numeric', 
+            'price'         => 'numeric',
+            'stock_qty'     => 'numeric',
         );
 
         $messages = array(
@@ -117,11 +118,11 @@ class ProductController extends Controller
         );
         
         $id = $request->id;
-        $temp = array('code' => $request->code, 
-                        'name' => $request->name, 
-                      'category_id' => $request->category_id, 
-                      'price' => $request->price, 
-                      'stock_qty' => $request->stock_qty);
+        $temp = array(  'code'          => $request->code, 
+                        'name'          => $request->name, 
+                        'category_id'   => $request->category_id, 
+                        'price'         => $request->price, 
+                        'stock_qty'     => $request->stock_qty);
 
         $validator = Validator::make($temp, $rules, $messages);
         if ($validator->fails()) {

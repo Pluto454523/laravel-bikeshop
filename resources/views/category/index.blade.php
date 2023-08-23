@@ -48,6 +48,7 @@
             {{ $categories->links() }}
             <br>
         </div>
+        
     </div>
 
     <script>
