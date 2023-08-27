@@ -2,6 +2,10 @@
 @section('title') BikeShop | ข้อมูลสินค้า @stop {{-- หัวข้อ title html --}}
 @section('content')
     <h1>ข้อมูลสินค้า</h1>
+    <ul class="breadcrumb">
+        {{-- <li><a href="{{ URL::to('product') }}">ประเภทสินค้า</a></li> --}}
+        <li class="active">ข้อมูลสินค้า </li>
+    </ul>
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="panel-title">
@@ -16,32 +20,33 @@
                 <button type="submit" class="btn btn-primary">ค้นหา</button>
             </form>
             <br>
+            
             <table class="table table-bordered bs-table">
                 <thead>
                     <tr>
-                        <th>รูปสินค้า </th>
-                        <th>รหัส</th>
-                        <th>ชื่อสินค้า </th>
-                        <th>ประเภท</th>
-                        <th>คงเหลือ</th>
-                        <th>ราคาต่อหน่วย</th>
-                        <th>การทํางาน</th>
+                        <th class="bs-center">รหัส </th>
+                        <th class="bs-center">รูปสินค้า</th>
+                        <th class="bs-center">ชื่อสินค้า </th>
+                        <th class="bs-center">ประเภท</th>
+                        <th class="bs-center">คงเหลือ</th>
+                        <th class="bs-center">ราคาต่อหน่วย</th>
+                        <th class="bs-center">การทํางาน</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($products as $p)
+                    @foreach ($products as $item)
                     <tr>
                         {{-- ตัวแปร products ที่ถูกส่งมาจาก Controller --}}
-                        <td><img src="../{{ $p->image_url }}" width="50px"></td>
-                        <td>{{ $p->code }}</td>
-                        <td>{{ $p->name }}</td>
-                        <td>{{ $p->category->name }}</td>
-                        <td class="bs-price">{{ number_format($p->stock_qty, 0) }}</td>
-                        <td class="bs-price">{{ number_format($p->price, 2) }}</td>
+                        <td class="bs-center">{{ $item->code }}</td>
+                        <td class="bs-center"><img src="{{ asset($item->image_url) }}" alt="" width="100px"></td>
+                        <td class="bs-center">{{ $item->name }}</td>
+                        <td class="bs-center">{{ $item->category->name }}</td>
+                        <td class="bs-price">{{ number_format($item->stock_qty, 0) }}</td>
+                        <td class="bs-price">{{ number_format($item->price, 2) }}</td>
                         <td class="bs-center">
-                            <a href="{{ URL::to('product/edit/' . $p->id) }}" class="btn btn-info"><i
+                            <a href="{{ URL::to('product/edit/' . $item->id) }}" class="btn btn-info"><i
                                     class="fa fa-edit"></i> แก้ไข</a>
-                            <a href="#" class="btn btn-danger btn-delete" id-delete="{{ $p->id }}">
+                            <a href="#" class="btn btn-danger btn-delete" id-delete="{{ $item->id }}">
                                 <i class="fa fa-trash"></i> ลบ</a>
                         </td>
 
@@ -57,8 +62,7 @@
                 </tfoot>
 
             </table>
-
-            <div class="panel-footer ">
+            <div class="panel-footer">
                 <span>แสดงข้อมูลจํานวน {{ count($products) }} รายการ</span>
             </div>
             <br>

@@ -17,21 +17,24 @@
 
 <body>
     <script src="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}"></script>
-    <div class="container">
-        <nav class="navbar navbar-default navbar-static-top">
+    
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
             <div class="navbar-header">
-                <a href="#" class="navbar-brand">Bikeshop</a>
+                <a href="#" class="navbar-brand">BIKE-SHOP</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">หน้าแรก</a></li>
+                    <li><a href="/">หน้าแรก</a></li>
                     <li><a href="{{ URL::to('product') }}">ข้อมูลสินค้า</a></li>
                     <li><a href="{{ URL::to('category') }}">ประเภทสินค้า</a></li>
                     <li><a href="#">รายงาน</a></li>
                 </ul>
             </div>
-
-        </nav>
+        </div>
+    </nav>
+    
+    <div class="container">
         <div style="text-align: center;">
             <h2>นายนาวิน ค้ำจุน</h2>
             <h2>6406021630039</h2>

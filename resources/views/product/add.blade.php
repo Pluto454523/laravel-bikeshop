@@ -1,7 +1,8 @@
 @extends('layouts.master') {{-- การสืบทอดโฟลเดอร์ --}}
 @section('title') BikeShop | ข้อมูลสินค้า @stop {{-- หัวข้อ title html --}}
 @section('content')
-    {!! Form::open(array (
+{!! Form::open(
+    array (
         'action' => 'App\Http\Controllers\ProductController@insert',
         'method' => 'post',
         'enctype' => 'multipart/form-data',
@@ -9,8 +10,8 @@
 
     <h1>ข้อมูลสินค้า</h1>
     <ul class="breadcrumb">
-        <li><a href="{{ URL::to('product') }}">หน้าแรก</a></li>
-        <li class="active">เพิ่มสินค้า </li>
+        <li><a href="{{ URL::to('product') }}">ข้อมูลสินค้า</a></li>
+        <li class="active">เพิ่ม</li>
     </ul>
 
     @if ($errors->any())
@@ -30,7 +31,7 @@
         </div>
 
         <div class="panel-body">
-            <table>
+            <table class="table table-bordered bs-table">
                 <tr>
                     <td>{{ Form::label('code', 'รหัสสินค้า ') }}</td>
                     <td>{{ Form::text('code', Request::old('code'), ['class' => 'form-control']) }}</td>
@@ -49,7 +50,7 @@
 
                 <tr>
                     <td>{{ Form::label('stock_qty', 'คงเหลือ') }}</td>
-                    <td>{{ Form::text('stock_qty', Request::old('stock_qty'), ['class' => 'form- control']) }}</td>
+                    <td>{{ Form::text('stock_qty', Request::old('stock_qty'), ['class' => 'form-control']) }}</td>
                 </tr>
 
                 <tr>
@@ -64,11 +65,10 @@
                 </tr>
 
             </table>
-            <br>
-            <div class="panel-footer">
-                <button type="reset" class="btn btn-danger">ยกเลิก</button>
-                <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> บันทึก</button>
-            </div>
+        </div>
+        <div class="panel-footer">
+            <button type="reset" class="btn btn-danger">ยกเลิก</button>
+            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> บันทึก</button>
         </div>
     </div>
     <script>

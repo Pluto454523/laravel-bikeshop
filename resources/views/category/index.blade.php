@@ -2,6 +2,10 @@
 @section('title') BikeShop | ประเภทสินค้า @stop
 @section('content')
     <h1>ประเภทสินค้า</h1>
+    <ul class="breadcrumb">
+        {{-- <li><a href="{{ URL::to('product') }}">ประเภทสินค้า</a></li> --}}
+        <li class="active">ประเภทสินค้า </li>
+    </ul>
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="panel-title">
@@ -19,16 +23,16 @@
             <table class="table table-bordered bs-table">
                 <thead>
                     <tr>
-                        <th>รหัสประเภท</th>
-                        <th>ชื่อประเภท</th>
-                        <th>การทำงาน</th>
+                        <th class="bs-center">#</th>
+                        <th class="bs-center">ชื่อประเภท</th>
+                        <th class="bs-center">การทำงาน</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($categories as $c)
                         <tr>
-                            <td> {{ $c->id }} </td>
-                            <td> {{ $c->name }} </td>
+                            <td class="bs-center"> {{ $c->id }} </td>
+                            <td class="bs-center"> {{ $c->name }} </td>
                             <td class="bs-center">
                                 <a href="{{ URL::to('category/edit/' . $c->id) }}" class="btn btn-info"> <i
                                         class="fa fa-edit"></i> แก้ไข</a>

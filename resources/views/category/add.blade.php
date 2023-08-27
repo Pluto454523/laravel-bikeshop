@@ -30,21 +30,20 @@
         </div>
 
         <div class="panel-body">
-            <table>
+            <table class="table table-bordered bs-table">
                
                 <tr>
-                    <td>{{ Form::label('name', 'ชื่อประเภท ') }}</td>
+                    <td class="bs-center">{{ Form::label('name', 'ชื่อประเภท ') }}</td>
                     <td>{{ Form::text('name', Request::old('name'), ['class' => 'form-control']) }}</td>
                 </tr>
 
                
 
             </table>
-            <br>
-            <div class="panel-footer">
-                <button type="reset" class="btn btn-danger">ยกเลิก</button>
-                <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> บันทึก</button>
-            </div>
+        </div>
+        <div class="panel-footer">
+            <button type="reset" class="btn btn-danger">ยกเลิก</button>
+            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> บันทึก</button>
         </div>
     </div>
     <script>

@@ -9,8 +9,7 @@ use Config, Validator;
 
 class ProductController extends Controller
 {
-    // rp = Result per Page
-    var $rp = 2;
+    var $rp = 5;
 
     public function index() {
         $products = Product::paginate($this->rp); //ตัวแปร products เป็นผลมาจากการดึงข้อมูลทั้งหมดขึ้นมา
@@ -26,6 +25,7 @@ class ProductController extends Controller
         } else {
                 $products = Product::paginate($this->rp);
         }
+        // return $request;
         return view('product/index' , compact('products'));
     }
 
@@ -33,7 +33,8 @@ class ProductController extends Controller
         $categories = Category::pluck('name' , 'id')->prepend('เลือกรายการ' , "");
         if($id) {
             // edit view
-            $product = Product::where('id', $id)->first(); return view('product/edit')
+            $product = Product::where('id', $id)->first(); 
+            return view('product/edit')
             ->with('product', $product)
             ->with('categories', $categories);
         } else {
@@ -84,18 +85,19 @@ class ProductController extends Controller
         if($request->hasFile('image')){
             $f = $request->file('image');
             $upload_to = 'upload/image';
-        }
 
-        // get path
-        $relative_path = $upload_to.'/'.$f->getClientOriginalName(); //path แบบสัมพันธ์
-        $absolute_path = public_path().'/'.$upload_to; // path แท้จริง
+            // get path
+            // $relative_path = $upload_to.'/'.$f->getClientOriginalName(); //path แบบสัมพันธ์
+            $relative_path = $upload_to.'/'.$product->id;
+            $absolute_path = public_path().'/'.$upload_to; // path แท้จริง
+
+            // upload file
+            // $f->move($absolute_path, $f->getClientOriginalName()); //อ่านจากเครื่องเจ้าหน้าที่ มาใน path แท้จริง'
+            $f->move($absolute_path, $product->id);
+            $product->image_url = $relative_path; 
+            $product->save();
+        }
         
-        // upload file
-        $f->move($absolute_path, $f->getClientOriginalName()); //อ่านจากเครื่องเจ้าหน้าที่ มาใน path แท้จริง'
-        $product->image_url = $relative_path; 
-        $product->save();
-        
-    
         return redirect('product')
         ->with('ok', 'True')
         ->with('msg', 'บันทึกข้อมูลเรียบร้อยแล้ว');
@@ -113,16 +115,17 @@ class ProductController extends Controller
         );
 
         $messages = array(
-            'required' => 'กรุณากรอกข้อมูล :attribute ให้ครบถ้วน', 'numeric' => 'กรุณากรอกข้อมูล
-            :attribute ให้เป็นตัวเลข',
+            'required'  => 'กรุณากรอกข้อมูล :attribute ให้ครบถ้วน', 
+            'numeric'   => 'กรุณากรอกข้อมูล :attribute ให้เป็นตัวเลข',
         );
         
         $id = $request->id;
-        $temp = array(  'code'          => $request->code, 
-                        'name'          => $request->name, 
-                        'category_id'   => $request->category_id, 
-                        'price'         => $request->price, 
-                        'stock_qty'     => $request->stock_qty);
+        $temp = array(
+            'code'          => $request->code, 
+            'name'          => $request->name, 
+            'category_id'   => $request->category_id, 
+            'price'         => $request->price, 
+            'stock_qty'     => $request->stock_qty);
 
         $validator = Validator::make($temp, $rules, $messages);
         if ($validator->fails()) {
@@ -143,17 +146,17 @@ class ProductController extends Controller
         if($request->hasFile('image')){
             $f = $request->file('image');
             $upload_to = 'upload/image';
+
+            // get path
+            $relative_path = $upload_to.'/'.$product->id; //path แบบสัมพันธ์
+            $absolute_path = public_path().'/'.$upload_to; // path แท้จริง
+
+            // upload file
+            $f->move($absolute_path, $product->id); //อ่านจากเครื่องเจ้าหน้าที่ มาใน path แท้จริง'
+            $product->image_url = $relative_path;
+
+            $product->save();
         }
-
-        // get path
-        $relative_path = $upload_to.'/'.$f->getClientOriginalName(); //path แบบสัมพันธ์
-        $absolute_path = public_path().'/'.$upload_to; // path แท้จริง
-
-        // upload file
-        $f->move($absolute_path, $f->getClientOriginalName()); //อ่านจากเครื่องเจ้าหน้าที่ มาใน path แท้จริง'
-        $product->image_url = $relative_path;
-
-        $product->save();
 
         return redirect('product')
         ->with('ok', 'True')
