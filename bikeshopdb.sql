@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 03, 2023 at 04:34 AM
--- Server version: 8.0.17
+-- Generation Time: Aug 27, 2023 at 03:28 PM
+-- Server version: 10.11.0-MariaDB
 -- PHP Version: 7.3.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -40,7 +40,7 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'อะไหล่', NULL, NULL),
+(1, 'อะไหล่', NULL, '2023-08-27 04:59:50'),
 (2, 'เครื่องแต่งกาย', NULL, NULL),
 (3, 'รองเท้า', NULL, NULL),
 (4, 'แว่นตา', NULL, NULL),
@@ -60,7 +60,7 @@ CREATE TABLE `failed_jobs` (
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -80,12 +80,13 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
-(2, '2014_10_12_100000_create_password_resets_table', 1),
-(3, '2019_08_19_000000_create_failed_jobs_table', 1),
-(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(5, '2023_07_20_021157_create_category_table', 1),
-(6, '2023_07_20_021417_create_product_table', 1);
+(14, '2023_08_23_161649_create_test_table', 1),
+(39, '2014_10_12_000000_create_users_table', 2),
+(40, '2014_10_12_100000_create_password_resets_table', 2),
+(41, '2019_08_19_000000_create_failed_jobs_table', 2),
+(42, '2019_12_14_000001_create_personal_access_tokens_table', 2),
+(43, '2023_07_20_021157_create_category_table', 2),
+(44, '2023_07_20_021417_create_product_table', 2);
 
 -- --------------------------------------------------------
 
@@ -111,7 +112,7 @@ CREATE TABLE `personal_access_tokens` (
   `tokenable_id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -140,9 +141,29 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `code`, `name`, `category_id`, `price`, `stock_qty`, `image_url`, `created_at`, `updated_at`) VALUES
-(1, 'P001', 'เสือหมอบ JAVA', 1, 11900.00, 2, NULL, NULL, NULL),
-(2, 'P002', 'เสือหมอบ วินเทจ Cannello Silvia', 1, 5000.00, 4, NULL, NULL, NULL),
-(3, 'P003', 'เสือหมอบ Panther March', 1, 6500.00, 2, NULL, NULL, NULL);
+(1, '007', 'เสื้อยืด Uniqlo Size XS', 2, 490.00, 10, 'upload/image/1', NULL, '2023-08-27 04:51:59'),
+(2, '001', 'เสื้อยืด Uniqlo Size S', 2, 490.00, 10, 'upload/image/2', NULL, '2023-08-27 04:53:11'),
+(3, '002', 'เสื้อยืด Uniqlo Size M', 2, 490.00, 10, 'upload/image/3', NULL, '2023-08-27 04:53:16'),
+(4, '003', 'เสื้อยืด Uniqlo Size L', 2, 520.00, 10, 'upload/image/4', NULL, '2023-08-27 04:53:22'),
+(5, '008', 'เสื้อยืด Uniqlo Size XL', 2, 520.00, 10, 'upload/image/5', NULL, '2023-08-27 04:53:27'),
+(6, '009', 'เสื้อยืด Uniqlo Size 2XL', 2, 550.00, 10, NULL, NULL, NULL),
+(7, '010', 'เสื้อยืด Uniqlo Size 3XL', 2, 550.00, 10, NULL, NULL, NULL),
+(8, '004', 'ล้อรถยนต์', 1, 2500.00, 10, NULL, NULL, NULL),
+(9, '005', 'พวงมาลัย', 1, 4900.00, 10, NULL, NULL, NULL),
+(10, '006', 'Nike air force 1 เบอร์ 38 US', 3, 1490.00, 10, NULL, NULL, NULL),
+(11, 'XXX', 'XXX', 5, 500.00, 50, 'upload/image/11', '2023-08-27 04:55:40', '2023-08-27 04:55:40');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `test`
+--
+
+CREATE TABLE `test` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -206,6 +227,12 @@ ALTER TABLE `product`
   ADD KEY `product_category_id_foreign` (`category_id`);
 
 --
+-- Indexes for table `test`
+--
+ALTER TABLE `test`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -232,7 +259,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -244,7 +271,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `test`
+--
+ALTER TABLE `test`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
