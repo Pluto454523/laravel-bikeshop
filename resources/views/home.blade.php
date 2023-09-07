@@ -36,6 +36,7 @@
                         <td>@{p.price|number:2}</td>
                         <td>@{p.qty|number:0}</td>
                         <td>
+                            <span ng-if="p.qty >= 5" ng-class="{'label label-success': p.qty >= 5}">สินค้าพร้อมขาย</span>
                             <span ng-if="p.qty > 0 && p.qty < 5" ng-class="{'label label-warning': p.qty > 0 && p.qty < 5}">สินค้าใกล้หมด</span>
                             <span ng-if="p.qty == 0" ng-class="{'label label-danger': p.qty == 0}">สินค้าหมด</span>
                         </td>
