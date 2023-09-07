@@ -1,0 +1,13 @@
+{
+    "recommendations": [
+        "visualstudioexptteam.vscodeintellicode",
+        "shufo.vscode-blade-formatter",
+        "onecentlin.laravel-blade",
+        "amiralizadeh9480.laravel-extra-intellisense",
+        "onecentlin.laravel5-snippets",
+        "pkief.material-icon-theme",
+        "devsense.phptools-vscode",
+        "devsense.profiler-php-vscode",
+        "esbenp.prettier-vscode"
+    ]
+}
