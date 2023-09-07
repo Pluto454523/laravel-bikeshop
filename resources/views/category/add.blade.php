@@ -1,5 +1,5 @@
 @extends('layouts.master') {{-- การสืบทอดโฟลเดอร์ --}}
-@section('title') BikeShop | เพิ่มข้อมูลประเภท @stop {{-- หัวข้อ title html --}}
+@section('title') BikeShop | อุปกรณ์จักรยาน, อะไหล่, ชุดแข่ง และอุปกรณ์ตกแต่ง @stop {{-- หัวข้อ title html --}}
 @section('content')
     {!! Form::open(array (
         'action' => 'App\Http\Controllers\CategoryController@insert',

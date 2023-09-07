@@ -11,13 +11,14 @@
     <link rel="stylesheet" href="{{ asset('vendor/toastr/toastr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <script src="{{ asset('js/jquery-3.7.0.min.js') }}"></script>
+    <script src="{{ asset('js/angular.min.js') }}"></script>
     <script src="{{ asset('vendor/toastr/toastr.min.js') }}"></script>
 
 </head>
 
 <body>
     <script src="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}"></script>
-    
+
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
             <div class="navbar-header">
@@ -25,7 +26,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="/">หน้าแรก</a></li>
+                    <li><a href="{{ URL::to('home') }}">หน้าแรก</a></li>
                     <li><a href="{{ URL::to('product') }}">ข้อมูลสินค้า</a></li>
                     <li><a href="{{ URL::to('category') }}">ประเภทสินค้า</a></li>
                     <li><a href="#">รายงาน</a></li>
@@ -33,7 +34,7 @@
             </div>
         </div>
     </nav>
-    
+
     <div class="container">
         <div style="text-align: center;">
             <h2>นายนาวิน ค้ำจุน</h2>
@@ -51,6 +52,7 @@
                 </script>
             @endif
         @endif
+    </div>
 </body>
 
 </html>

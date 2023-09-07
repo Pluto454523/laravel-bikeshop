@@ -1,5 +1,5 @@
 @extends('layouts.master') {{-- การสืบทอดโฟลเดอร์ --}}
-@section('title') BikeShop | ข้อมูลสินค้า @stop {{-- หัวข้อ title html --}}
+@section('title') BikeShop | อุปกรณ์จักรยาน, อะไหล่, ชุดแข่ง และอุปกรณ์ตกแต่ง @stop {{-- หัวข้อ title html --}}
 @section('content')
     <h1>ข้อมูลสินค้า</h1>
     <ul class="breadcrumb">

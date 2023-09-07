@@ -37,3 +37,5 @@ Route::get('/category/search', [App\Http\Controllers\ProductController::class, '
 Route::post('/category/search', [App\Http\Controllers\CategoryController::class, 'search']);
 Route::post('/category/update', [App\Http\Controllers\CategoryController::class, 'update']);
 Route::post('/category/insert', [App\Http\Controllers\CategoryController::class, 'insert']);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);

@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title') BikeShop | ประเภทสินค้า @stop
+@section('title') BikeShop | อุปกรณ์จักรยาน, อะไหล่, ชุดแข่ง และอุปกรณ์ตกแต่ง @stop
 @section('content')
     <h1>ประเภทสินค้า</h1>
     <ul class="breadcrumb">
