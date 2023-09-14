@@ -1,0 +1,43 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Laravel",
+    "dateExported": "2023-09-14T03:53:05.832Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "b8f7d348-8e73-490d-9b26-4260a10e2c91",
+            "colId": "5cbf2ef7-d369-44ea-a479-455fd62a0351",
+            "containerId": "",
+            "name": "http://127.0.0.1:8000/api/product",
+            "url": "http://127.0.0.1:8000/api/product",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-09-14T02:13:31.682Z",
+            "modified": "2023-09-14T02:13:31.682Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "99258634-104e-4b53-b198-39a090f52ddd",
+            "colId": "5cbf2ef7-d369-44ea-a479-455fd62a0351",
+            "containerId": "",
+            "name": "http://127.0.0.1:8000/api/product",
+            "url": "http://127.0.0.1:8000/api/product/search?q=uni",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-09-14T03:53:00.152Z",
+            "modified": "2023-09-14T03:53:00.152Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "q",
+                    "value": "uni",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        }
+    ]
+}
