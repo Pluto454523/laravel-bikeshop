@@ -39,3 +39,8 @@ Route::post('/category/update', [App\Http\Controllers\CategoryController::class,
 Route::post('/category/insert', [App\Http\Controllers\CategoryController::class, 'insert']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
+
+Route::get('/cart/view', [App\Http\Controllers\CartController::class, 'viewCart']);
+Route::get('/cart/add/{id?}', [App\Http\Controllers\CartController::class, 'addToCart']);
+Route::get('/cart/delete/{id?}', [App\Http\Controllers\CartController::class, 'deleteCart']);
+Route::get('/cart/update/{id}/{qty}', [App\Http\Controllers\CartController::class, 'updateCart']);
