@@ -83,9 +83,10 @@
     <script type="text/javascript">
         function complete() {
             window.open(
-                "{{ URL::to('cart/finish') }}?cust_name=" + $('#cust_name').val() + '&cust_email=' +
+                "{{ URL::to('cart/complete') }}?cust_name=" + $('#cust_name').val() + '&cust_email=' +
                 $('#cust_email').val(), "_blank",
             );
+            window.location.href = "{{ URL::to('cart/finish') }}";
         }
     </script>
 @stop

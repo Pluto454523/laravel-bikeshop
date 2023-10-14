@@ -85,8 +85,13 @@
                                     <div>ราคา <strong>@{p.price}</strong> บาท</div>
                                 </div>
 
+                                @guest
+                                <a class="btn btn-danger btn-block">
+                                    <i class="fa fa-shopping-cart"></i> หยิบใส่ตะกร้า</a>
+                                @else
                                 <a href="#" class="btn btn-success btn-block" ng-click="addToCart(p)">
                                     <i class="fa fa-shopping-cart"></i> หยิบใส่ตะกร้า</a>
+                                @endguest
 
                             </div>
                         </div>
@@ -158,12 +163,12 @@
                 });
             };
 
-            
-            $scope.addToCart = function (p) {
+
+            $scope.addToCart = function(p) {
                 console.log(p.id);
                 window.location.href = '/cart/add/' + p.id;
             };
-            
+
         });
 
         // app.controller('ctrl', function($scope) {

@@ -11,6 +11,9 @@ class CartController extends Controller
     public function viewCart()
     {
         $cart_items = Session::get('cart_items');
+        if (is_null($cart_items)) {
+            $cart_items = array();
+        }
         return view('cart/index', compact('cart_items'));
     }
 
@@ -42,6 +45,9 @@ class CartController extends Controller
     public function deleteCart($id)
     {
         $cart_items = Session::get('cart_items');
+        if (is_null($cart_items)) {
+            $cart_items = array();
+        }
         unset($cart_items[$id]);
         Session::put('cart_items', $cart_items);
         return redirect('cart/view');
@@ -49,6 +55,9 @@ class CartController extends Controller
     public function updateCart($id, $qty)
     {
         $cart_items = Session::get('cart_items');
+        if (is_null($cart_items)) {
+            $cart_items = array();
+        }
         $cart_items[$id]['qty'] = $qty;
         Session::put('cart_items', $cart_items);
         return redirect('cart/view');
@@ -56,12 +65,18 @@ class CartController extends Controller
     public function checkout()
     {
         $cart_items = Session::get('cart_items');
+        if (is_null($cart_items)) {
+            $cart_items = array();
+        }
         return view('cart/checkout', compact('cart_items'));
     }
 
     public function complete(Request $request)
     { //อย่าลืม use Request ด้วย
         $cart_items = Session::get('cart_items');
+        if (is_null($cart_items)) {
+            $cart_items = array();
+        }
         $cust_name = $request->cust_name;
         $cust_email = $request->cust_email;
         $po_no = 'PO' . date("Ymd");
@@ -103,6 +118,9 @@ class CartController extends Controller
     public function finish_order()
     {
         $cart_items = Session::get('cart_items');
+        if (is_null($cart_items)) {
+            $cart_items = array();
+        }
         Session::remove('cart_items');
         return redirect('/');
     }
